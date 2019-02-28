@@ -1,31 +1,33 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import './App.css';
-import Header from './header.js'
-import Main from './main.js'
+import Header from './components/header.js'
+import { postData } from './untils'
+import api from './api'
+import './App.css'
 class App extends Component {
-      static childContextTypes = {
-            themeColor :PropTypes.string,
-            color:PropTypes.string
-      }
-      constructor () {
-            super()
-            this.state = {
-              themeColor : 'red',
-              color:'yellow'
+    state={
+        userName: ''
+    }
+    saveUserName = (value) => {
+        console.log(value);
+        this.setState(
+            {saveUserName: value },()=>{
+                postData(api.search,{
+                    q: value
+                }).then(
+                    (v)=>{
+                        console.log(v);
+                    }
+                );
             }
-      }
-      getChildContext () {
-            return {
-              themeColor : this.state.themeColor,
-              color:this.state.color
-            }
-          }
+        )
+    }
+    componentDidMount() {
+
+    }
   render() {
     return (
       <div className="App">
-            <Header/>
-            <Main/>
+            <Header saveUserName = {this.saveUserName}/>
       </div>
     );
   }
