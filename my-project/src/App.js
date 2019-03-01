@@ -1,33 +1,27 @@
 import React, { Component } from 'react';
 import Header from './components/header.js'
-import { postData } from './untils'
-import api from './api'
-import './App.css'
+import List from './components/list.js'
+
 class App extends Component {
     state={
         userName: ''
     }
+    // 将子元素的input值保存在父元素
     saveUserName = (value) => {
-        console.log(value);
         this.setState(
-            {saveUserName: value },()=>{
-                postData(api.search,{
-                    q: value
-                }).then(
-                    (v)=>{
-                        console.log(v);
-                    }
-                );
-            }
+            {userName: value }
         )
     }
     componentDidMount() {
 
+
     }
   render() {
-    return (
+    const {userName} =this.state;
+      return (
       <div className="App">
             <Header saveUserName = {this.saveUserName}/>
+            <List searchName={userName}/>
       </div>
     );
   }
