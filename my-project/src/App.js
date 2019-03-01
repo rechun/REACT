@@ -1,31 +1,27 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import './App.css';
-import Header from './header.js'
-import Main from './main.js'
+import Header from './components/header.js'
+import List from './components/list.js'
+
 class App extends Component {
-      static childContextTypes = {
-            themeColor :PropTypes.string,
-            color:PropTypes.string
-      }
-      constructor () {
-            super()
-            this.state = {
-              themeColor : 'red',
-              color:'yellow'
-            }
-      }
-      getChildContext () {
-            return {
-              themeColor : this.state.themeColor,
-              color:this.state.color
-            }
-          }
+    state={
+        userName: ''
+    }
+    // 将子元素的input值保存在父元素
+    saveUserName = (value) => {
+        this.setState(
+            {userName: value }
+        )
+    }
+    componentDidMount() {
+
+
+    }
   render() {
-    return (
+    const {userName} =this.state;
+      return (
       <div className="App">
-            <Header/>
-            <Main/>
+            <Header saveUserName = {this.saveUserName}/>
+            <List searchName={userName}/>
       </div>
     );
   }
