@@ -1,0 +1,8 @@
+Redux 是Flux的一种实现
+
+1.Redux规定应用只能拥有一个store
+2.Reducer 数据的改变通过纯函数Reducer完成
+
+在Redux中，我们应该通过reducer直接返回一个新的state。
+
+
