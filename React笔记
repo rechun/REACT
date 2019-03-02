@@ -1,0 +1,15 @@
+JSX :
+
+1.在return语句中，返回的DOM节点只能有一个根节点，也就是说顶层节点不能有两个(否则会报错)
+
+    // 错误示例
+    return (
+      <div>Node 1</div>
+      <div>Node 2</div>
+    )
+
+2.需要注意JS和HTML中的关键字冲突。我们不能在里面写class=xxx,而应该将class替换为className     
+
+
+React工作方式的优点：函数式编程思维
+
