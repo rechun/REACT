@@ -1,0 +1,28 @@
+1.按角色进行组织(MVC框架)
+
+|
+|--controllers/
+|   |--...
+|
+|--models/
+|   |--...
+|
+|--views/
+|
+|   |--...
+|
+|...
+
+2.按功能进行组织
+
+把各个功能模块放入对应文件中,并在每个文件夹中增加相应的index文件导出本模块的文件供其他模块进行调用
+
+import view from './WeatherSelectedStatus'
+
+export {view}
+
+在需要使用WeatherSelectedStatus的地方，我们可以使用以下方式获取:
+
+import {view as WeatherSelectedStatus} from './WeatherSelectedStatus'
+
+这么做的好处在于，无论WeatherSelectedStatus如何修改，通过index对外暴露的接口都不会改变，使用时直接安装上面的import方式进行导入即可
