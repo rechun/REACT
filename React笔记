@@ -11,14 +11,35 @@ prop和state的主要区别：
 2.state是用于记录组件内部的状态的，因此组件可以修改
 
 
+组件的生命周期
+
+组件在生命周期中可能会经历三个过程:
+    1.装载(Mount).即组件第一次在DOM树中渲染的过程
+    
+    2.更新(Update),即组件重新渲染的过程
+    
+    3.卸载(Unmount),即组件从DOM树中删除的过程
+
+1.装载:
+    组件装载过程中会经历以下阶段:
+        constructor ->getInitialState ->getDefaultProps ->
+        componentWillMount ->render ->componentDidMount
+        
+ constructor是组件类的构造函数,我们在这里完成组件的初始化工作
+ 
+ render 是整个React组件中最重要的函数，组件通过该函数的返回值进行渲染。
+ 
+ render函数不做实际的渲染动作，它只是返回一个JSX描述的解构，最终由React来操作渲染过程
 
 
+componentWillMount和componentDidMount的调用分别发生在render前后
 
 
+2.更新:
 
-
-
-
+    组件的更新过程会经历以下阶段：
+        componentWillReceiveProps -> shouldComponentUpdate -> 
+        componentWillUpdate -> render -> componentDidUpdate
 
 
 
