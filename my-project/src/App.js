@@ -7,7 +7,7 @@ import './App.css';
 class App extends Component {
     state = {
           info:'',
-          dolist:['aaa','ccc'],
+          dolist:[],
           sendDo:'',
     }
     saveName = (v) =>{
@@ -23,6 +23,8 @@ class App extends Component {
           if(v){
                 this.setState({
                   dolist :[...this.state.dolist,v],
+                }, ()=>{
+                    console.log(this.state.dolist);
                 })
           }
     }
@@ -37,7 +39,7 @@ class App extends Component {
 
             <Add addEvent = {this.addEvent}
             />
-            <TodoList  addData ={dolist} />
+            <TodoList addData ={dolist} />
       </div>
     );
   }
