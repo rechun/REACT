@@ -2,16 +2,22 @@ import React, { Component } from 'react';
 import { Input} from 'antd'
 const Search = Input.Search;
 class Add extends Component{
+
     render(){
-        const {addEvent} = this.props;
+
+        const {addEvent, handleInputValue, inputValue} = this.props;
         return (
            <div>
                 <Search placeholder="ADD"
                 enterButton="Add to do"
                 size="large"
+                value={inputValue}
                 onSearch ={(e)=>{
                     console.log(e);
                     addEvent(e)
+                }}
+                onChange={(e) => {
+                    handleInputValue(e)
                 }}
                 />
            </div>

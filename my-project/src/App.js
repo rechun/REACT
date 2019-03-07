@@ -19,26 +19,32 @@ class App extends Component {
           console.log('dolist')
 
     }
+    handleInputValue = (e) => {
+        this.setState({
+            inputValue: e.target.value
+        })
+    }
     addEvent =(v) =>{
           if(v){
                 this.setState({
                   dolist :[...this.state.dolist,v],
                 }, ()=>{
-                    console.log(this.state.dolist);
+                    this.setState({
+                        inputValue: ''
+                    })
                 })
           }
     }
   render() {
-        const {info,dolist} = this.state;
+        const {info,dolist,inputValue} = this.state;
     return (
       <div className="App">
-            <Header  
-            saveName =  {this.saveName}   
+            <Header
+            saveName =  {this.saveName}
             />
             <Content search={info}/>
 
-            <Add addEvent = {this.addEvent}
-            />
+            <Add addEvent = {this.addEvent} handleInputValue = {this.handleInputValue} inputValue={inputValue}/>
             <TodoList addData ={dolist} />
       </div>
     );
