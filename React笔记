@@ -67,3 +67,15 @@ React工作方式的优点：函数式编程思维
 
 
 react-intl React国际化解决方案
+
+   根结构
+    src===>  api/componentc/layouts/locales/pages/store/utiles
+    index/router/ruducers/config
+    二级目录
+    api===> index/requese/user
+    components===>CustormForm/SearchFilter
+    layouts ===>BasicLayout/UserLayout
+    locales ===>en=US/zh-CN
+    pages ===> sql/chart
+    store===>userLogot/userProfile
+    utils===>authority
