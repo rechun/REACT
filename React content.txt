@@ -14,3 +14,17 @@
 
 并实现一个实例getChildContext方法，返回一个代表Context的纯对象 (plain object) 。
 
+
+几个可以直接获取Context的地方
+
+际上，除了实例的context属性(this.context)，React组件还有很多个地方可以直接访问父组件提供的Context。比如构造方法：
+
+constructor(props, context)
+
+比如生命周期：
+
+componentWillReceiveProps(nextProps, nextContext)
+shouldComponentUpdate(nextProps, nextState, nextContext)
+componetWillUpdate(nextProps, nextState, nextContext)
+
+对于面向函数的无状态组件，可以通过函数的参数直接访问组件的Context。
