@@ -13,7 +13,6 @@ class Add extends Component{
                 size="large"
                 value={inputValue}
                 onSearch ={(e)=>{
-                    console.log(e);
                     addEvent(e)
                 }}
                 onChange={(e) => {

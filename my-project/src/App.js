@@ -3,12 +3,14 @@ import Header from './components/header';
 import Content from './components/content'
 import Add from './components/add'
 import TodoList from './components/todolist'
+import Counter from './components/counter'
 import './App.css';
 class App extends Component {
     state = {
           info:'',
           dolist:[],
           sendDo:'',
+          counterNum:0,
     }
     saveName = (v) =>{
           this.setState({
@@ -36,7 +38,7 @@ class App extends Component {
           }
     }
   render() {
-        const {info,dolist,inputValue} = this.state;
+        const {info,dolist,inputValue,counterNum} = this.state;
     return (
       <div className="App">
             <Header
@@ -46,6 +48,7 @@ class App extends Component {
 
             <Add addEvent = {this.addEvent} handleInputValue = {this.handleInputValue} inputValue={inputValue}/>
             <TodoList addData ={dolist} />
+            <Counter counterNum={this.counterNum}/>
       </div>
     );
   }

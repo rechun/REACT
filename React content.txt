@@ -1,0 +1,16 @@
+把Context当做组件作用域
+使用React的开发者都知道，一个React App本质就是一棵React组件树，
+
+每个React组件相当于这棵树上的一个节点，除了App的根节点，其他每个节点都存在一条父组件链。
+
+如何使用Context
+
+如果要Context发挥作用，需要用到两种组件，一个是Context生产者(Provider)，通常是一个父节点，
+
+另外是一个Context的消费者(Consumer)，通常是一个或者多个子节点。所以Context的使用基于生产者消费者模式。
+
+
+对于父组件，也就是Context生产者，需要通过一个静态属性childContextTypes声明提供给子组件的Context对象的属性，
+
+并实现一个实例getChildContext方法，返回一个代表Context的纯对象 (plain object) 。
+
