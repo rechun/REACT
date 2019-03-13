@@ -1,20 +1,8 @@
-react-router: 实现了路由的核心功能
+react-router-dom是react-router中用于浏览器的。react-router被分为一下几部分：
 
 
-react-router-dom: 基于react-router，加入了在浏览器运行环境下的一些功能，例如：Link组件，会渲染一个a标签，Link组件源码a标签行;
+react-router是浏览器和原生应用的通用部分。
 
-BrowserRouter和HashRouter组件，前者使用pushState和popState事件构建路由，后者使用window.location.hash和hashchange事件构建路由。
+react-router-dom是用于浏览器的。
 
-react-router-native: 基于react-router，类似react-router-dom，加入了react-native运行环境下的一些功能。
-
-React-router
-React-router提供了一些router的核心api，包括Router, Route, Switch等，但是它没有提供dom操作进行跳转的api。
-
-React-router-dom
-
-
-React-router-dom提供了BrowserRouter, Route, Link等api,我们可以通过dom的事件控制路由。
-
-例如点击一个按钮进行跳转，大多数情况下我们是这种情况，所以在开发过程中，我们更多是使用React-router-dom。
-
-安装很简单npm i react-router-dom --save,安装了淘宝镜像的就用cnpm吧。
+react-router-native是用于原生应用的。
