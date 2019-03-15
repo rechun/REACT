@@ -1,0 +1,54 @@
+---
+
+
+---
+
+<p>#react V16.6动态import，lazy(),Suspense,Error, boundaries</p>
+<h2 id="一、动态import">一、动态import</h2>
+<pre><code>	动态 import 主要用延迟请求
+</code></pre>
+<p>当触发点击事件的时候，才会去引入需要的方法或者是对象，并且由于 Promise API 的特性，可以使用 <code>Promise.all</code>  <code>Promise.race</code> 这种 API，进行并行加载，然后在 then() 回调中调用方法，非常方便</p>
+<h2 id="二、-react.lazy-和-suspense">二、 React.lazy() 和 Suspense</h2>
+<ol>
+<li>React.lazy()</li>
+</ol>
+<p>动态 import 主要应用场景是延迟加载方法，对于组件来说，并不是很适用，但是 <code>React.lazy</code> 对于组件的加载则是有比较大的帮助。</p>
+<pre class=" language-javascript"><code class="prism  language-javascript"><span class="token keyword">const</span> OtherComponent <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">lazy</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'./OtherComponent'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">MyComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>OtherComponent <span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>摒弃了之前的 <code>import X from 'x'</code> 的静态引入方式。<br>
+同样的，这个变动会使得在组件渲染的时候，再去加载包含引入路径的组件。<code>React.lazy(()=&gt;{})</code> 这个方法的回调中其实就是包含了一个动态 import</p>
+<ol start="2">
+<li>Suspense<br>
+要使用 <code>Suspense</code>，需要从 react 中 import:</li>
+</ol>
+<pre class=" language-javascript"><code class="prism  language-javascript"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component<span class="token punctuation">,</span> Suspense <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+</code></pre>
+<p>既然是延迟加载，就会有一个加载过程，之前在渲染的时候，我们基本都是自顶一个一个 <code>&lt;Loading&gt;</code> 组件，然后通过变量控制进行操作，如果加载完成，则取消掉 <code>&lt;Loading&gt;</code> 组件。<br>
+既然是延迟加载，就一定会有一个loading的过程，而 <code>Suspense</code> 正是完成这个过程。</p>
+<pre class=" language-javascript"><code class="prism  language-javascript"><span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"App"</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>header className<span class="token operator">=</span><span class="token string">"App-header"</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>Suspense fallback<span class="token operator">=</span><span class="token punctuation">{</span><span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>Loading<span class="token operator">...</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>
+        <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">renderList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>Suspense<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>header<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token template-string"><span class="token string">``</span></span><span class="token template-string"><span class="token string">``</span></span>Suspense<span class="token template-string"><span class="token string">`  使用的时候，`</span></span>fallback`  一定是存在且有内容的， 否则会报错。
+
+针对网络请求的 loading，我并没觉的这种 fallback 有什么帮助，因为他是组件加载的 loading，如果组件加载完了，那么再去 fallback 就没意义，也没效果了。
+
+<span class="token number">3</span><span class="token punctuation">.</span> Error boundaries
+
+</code></pre>
+
