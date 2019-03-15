@@ -1,0 +1,37 @@
+
+
+因为 现在项目前后端是分离的,
+我的地址跟后端是不一样的,
+需要解决跨域问题。
+
+
+package.json 配置
+
+
+ "proxy": {
+    "/*": {
+      "target": "https://douban.uieee.com",
+      "changeOrigin": true
+    }
+  }
+  
+  这样还没有解决跨越问题，还必须在axios 文件创建请求判断：
+  
+  
+  import axios from 'axios'
+let baseUrl = 'https://douban.uieee.com';
+
+if (process.env.NODE_ENV === 'development') {
+    baseUrl = 'http://localhost:3000';
+} else {
+   // baseUrl = 'http://localhost:3000';
+}
+// export const baseUrl = 'http://localhost:3000';
+let $axios = axios.create({
+    baseURL: baseUrl + '/v2/movie',
+    timeout: 10000,
+    responseType: 'json',
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+    }
+});
