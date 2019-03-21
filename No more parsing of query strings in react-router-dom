@@ -1,1 +1,4 @@
 https://github.com/ReactTraining/react-router/issues/4410
+            const search = this.props.location.search; 
+            const params = new URLSearchParams(search);
+            const instance_name = params.get('instance_name'); 
