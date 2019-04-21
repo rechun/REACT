@@ -17,3 +17,19 @@ React 组件使用一个名为 render() 的方法， 接收数据作为输入，
 因为 JSX 的特性更接近 JavaScript 而不是 HTML , 所以 React DOM 使用 camelCase 小驼峰命名 来定义属性的名称，而不是使用 HTML 的属性名称。
 
 例如，class 变成了 className，而 tabindex 则对应着 tabIndex。
+
+
+
+
+元素是构成 React 应用的最小单位
+
+
+与浏览器的 DOM 元素不同，React 当中的元素事实上是普通的对象，React DOM 可以确保 浏览器 DOM 的数据内容与 React 元素保持一致。
+
+更新元素渲染
+
+React 元素都是immutable 不可变的。
+当元素被创建之后，你是无法改变其内容或属性的。一个元素就好像是动画里的一帧，它代表应用界面在某一时间点的样子
+
+
+组件可以将UI切分成一些独立的、可复用的部件，这样你就只需专注于构建每一个单独的部件。
