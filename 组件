@@ -53,3 +53,9 @@ Clock 现在被定义为一个类而不只是一个函数
 
 
 构造函数是唯一能够初始化 this.state 的地方。
+
+
+// Correct
+this.setState((prevState, props) => ({
+  counter: prevState.counter + props.increment
+}));
