@@ -1,1 +1,83 @@
-https://juejin.im/post/5cd5a39e6fb9a03242651ab8
+作者：我就是个小前端
+链接：https://juejin.im/post/5cd5a39e6fb9a03242651ab8
+来源：掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+constructor
+
+
+/*
+* constructor 其实是Es6 里面带的一个属性，代表初始化，但是组件未挂载
+* constructor的固定写法如下
+* 比如你react 需要定义一些 
+* State 的值就可以定义在 constructor里面，这个是一个很好的习惯
+*/
+
+
+componentWillMount
+
+
+/*
+* 组件初始化时只调用，
+* 以后组件更新不调用，
+* 整个生命周期只调用一次，此时可以修改state
+*/
+
+
+render
+
+/*
+* react最重要的步骤，
+* 创建虚拟dom，
+* 进行diff算法，当你组件传递数据更新变化都会执行 render
+* 更新dom树都在此进行。此时就不能更改state了
+* 你这里再去更改state 就会报错哦，记住了 !!!
+* 一般父组件传递的props 都会在此获取
+* 父子之间传递数据，可以参考我另一篇文章
+* https://blog.csdn.net/wonaixiaoshenshen/article/details/89221569
+*/
+
+
+
+componentDidMount
+
+
+/*
+* 这个属性就 厉害啦，这个属性就是加载请求数据的最好放处，
+* 此处是axios 的方式，feach 的方式其实同理
+*/
+
+
+
+componentWillReceiveProps(nextProps){
+/*  此生命周期是需要条件成立才会执行的
+*   组件初始化时不调用
+*   组件接受新的props时调用。
+*   常用于父子组件传值，子组件写这个方法函数
+/
+}
+
+
+
+shouldComponentUpdate(nextProps, nextState)
+
+
+/*
+* 当没有导致state的值发生变化的setState是否会导致当前页面重渲染 
+* 所以，shouldComponentUpdate会阻止不必要的没有意义的重渲染
+* shouldComponentUpdate函数是重渲染时render()
+* 函数调用前被调用的函数，它接受两个参数：nextProps和nextState，
+* 分别表示下一个props和下一个state的值。
+* 当函数返回false时候，阻止接下来的render()函数的调用，
+* 阻止组件重渲染，而返回true时，组件照常重渲染。
+*
+*/
+
+componentWillUnmount(){
+/*
+* 组件将要卸载时调用，
+* 一些事件监听和定时器需要在此时清除
+*/
+}
+
