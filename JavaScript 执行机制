@@ -1,0 +1,54 @@
+setTimeout(fn,0)的含义是，指定某个任务在主线程最早可得的空闲时间执行，意思就是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行
+
+
+
+console.log('1');
+
+setTimeout(function() {
+    console.log('2');
+    process.nextTick(function() {
+        console.log('3');
+    })
+    new Promise(function(resolve) {
+        console.log('4');
+        resolve();
+    }).then(function() {
+        console.log('5')
+    })
+})
+process.nextTick(function() {
+    console.log('6');
+})
+new Promise(function(resolve) {
+    console.log('7');
+    resolve();
+}).then(function() {
+    console.log('8')
+})
+
+setTimeout(function() {
+    console.log('9');
+    process.nextTick(function() {
+        console.log('10');
+    })
+    new Promise(function(resolve) {
+        console.log('11');
+        resolve();
+    }).then(function() {
+        console.log('12')
+    })
+})
+
+
+(1)js 的异步
+我们从最开头就说 javascript 是一门单线程语言，不管是什么新框架新语法糖实现的所谓异步，其实都是用同步的方法去模拟的，牢牢把握住单线程这点非常重要。
+
+(2) 事件循环 Event Loop
+事件循环是 js 实现异步的一种方法，也是 js 的执行机制。
+
+(3)javascript 的执行和运行
+执行和运行有很大的区别，javascript 在不同的环境下，比如 node，浏览器，Ringo 等等，执行方式是不同的。而运行大多指 javascript 解析引擎，是统一的。
+
+
+
+https://juejin.im/post/59e85eebf265da430d571f89
