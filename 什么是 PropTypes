@@ -1,2 +1,10 @@
 随着时间的推移，应用程序会变得越来越大，因此类型检查非常重要。
 PropTypes为组件提供类型检查，并为其他开发人员提供很好的文档。如果 react 项目不使用 Typescript，建议为组件添加 PropTypes。
+
+
+如何更新状态以及如何不更新
+
+更新的 props 和状态是异步的
+this.setState((state, props) => {
+    timesVisited: state.timesVisited + props.count
+});
