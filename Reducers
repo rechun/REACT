@@ -1,0 +1,11 @@
+Reducers 是纯函数，它将 action和当前 state 作为参数, 计算必要的逻辑并返回一个新 r 的state。 
+这些 Reducers 没有任何副作用。 它不会改变 state 而是总是返回 state 。
+
+
+如何在 React 进行 API 调用
+
+们使用redux-thunk在 React 中调用 API。因为reduce是纯函数，所以没有副作用，比如调用 API。
+
+因此，我们必须使用redux-thunk从 action creators 那里进行 API 调用。
+Action creator 派发一个 action，将来自 API 的数据放入 action 的 payload 中。
+Reducers 接收我们在上面的redux循环中讨论的数据，其余的过程也是相同的。
